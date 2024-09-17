@@ -39,8 +39,16 @@ class DFA:
                 self.states[state] = {}
             for char in 'abcdefghijklmnopqrstuvwxyz':
                 if char not in self.states[state]:
-                    if state >= self.last_name_start_state:
+                    # og code that had a bug
+                    """if state >= self.last_name_start_state:
                         self.states[state][char] = self.accepting_state
+                    else:
+                        self.states[state][char] = self.start_state"""
+                    # potential fix
+                    if self.start_state <= state < self.first_name_end_state:
+                        self.states[state][char] = self.start_state
+                    elif self.last_name_start_state <= state <= self.accepting_state:
+                        self.states[state][char] = self.last_name_start_state
                     else:
                         self.states[state][char] = self.start_state
 
