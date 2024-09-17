@@ -104,7 +104,7 @@ def main():
 
         while True:
             print("\nEnter test cases (one per line). Press Enter on an empty line to stop:")
-            test_case = input().strip()
+            test_case = input().strip().lower()
             if test_case == '':
                 print("Empty line detected, exiting test cases loop.")
                 break  # Exit the test cases loop
