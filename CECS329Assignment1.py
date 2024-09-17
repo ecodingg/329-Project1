@@ -47,10 +47,10 @@ class DFA:
                     # potential fix
                     if self.start_state <= state < self.first_name_end_state:
                         self.states[state][char] = self.start_state
-                    elif self.last_name_start_state <= state <= self.accepting_state:
+                    elif self.last_name_start_state <= state < self.accepting_state:
                         self.states[state][char] = self.last_name_start_state
                     else:
-                        self.states[state][char] = self.start_state
+                        self.states[state][char] = self.accepting_state
 
     def process_input(self, input_string):
         state = self.start_state
