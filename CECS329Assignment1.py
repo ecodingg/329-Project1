@@ -1,5 +1,5 @@
 #Names: Eden Doss-Fillmore,
-#Tools used: Visual Studio Code, Discord, GitHub, Python, 
+#Tools used: Visual Studio Code, Discord, GitHub, Python, ChatGPT
 
 class DFA:
     def __init__(self, first_name, last_name):
