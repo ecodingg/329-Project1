@@ -105,10 +105,18 @@ def main():
         
         dfa = DFA(first_name, last_name)
 
+        test_cases = ['noah', 'daniel', 'noahdanie', 'noahdaniel', 'qfoenwfinoahdanielwion', '', 'danielnoah']
+
+        for i in test_cases:
+            print('\nTesting test case:', i)
+            test_case = i.strip().lower()
+            result = dfa.process_input(test_case)
+            print(f"Input: {test_case} -> {'Accepted' if result else 'Rejected'}")
+
         while True:
-            print("\nEnter test cases (one per line). Press Enter on an empty line to stop:")
+            print("\nEnter manual test cases (one per line). Type 'exit' to stop:")
             test_case = input().strip().lower()
-            if test_case == '':
+            if test_case == 'exit':
                 print("Empty line detected, exiting test cases loop.")
                 break  # Exit the test cases loop
             
