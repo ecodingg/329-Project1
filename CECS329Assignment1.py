@@ -94,6 +94,61 @@ class DFA:
             index += 1
 
         return False
+    
+class NFA:
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.build_nfa()
+
+    def build_nfa(self):
+        self.states = {}
+        state_id = 0
+        self.start_state = state_id
+
+        # Create states for matching the first name
+        current_state = state_id
+        for char in self.first_name:
+            next_state = state_id + 1
+            self.states[state_id] = {}
+            self.states[state_id][char] = next_state
+            state_id = next_state
+            current_state = next_state
+
+        # Intermediate state after matching the first name
+        self.first_name_end_state = current_state
+
+        # Create states for matching the last name
+        self.last_name_start_state = state_id
+        for char in self.last_name:
+            next_state = state_id + 1
+            self.states[state_id] = {}
+            self.states[state_id][char] = next_state
+            state_id = next_state
+
+        # Final accepting state
+        self.accepting_state = state_id
+        self.states[self.accepting_state] = {}
+
+        # Initialize transitions for characters not in the current state dictionary
+        for state in range(self.accepting_state + 1):
+            if state not in self.states:
+                self.states[state] = {}
+            for char in 'abcdefghijklmnopqrstuvwxyz':
+                if char not in self.states[state]:
+                    # og code that had a bug
+                    """if state >= self.last_name_start_state:
+                        self.states[state][char] = self.accepting_state
+                    else:
+                        self.states[state][char] = self.start_state"""
+                    # potential fix
+                    if self.start_state <= state < self.first_name_end_state:
+                        self.states[state][char] = self.start_state
+                    elif self.last_name_start_state <= state < self.accepting_state:
+                        self.states[state][char] = self.last_name_start_state
+                    else:
+                        self.states[state][char] = self.accepting_state
+    
 
 def main():
     while True:
