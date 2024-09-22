@@ -198,13 +198,15 @@ def main():
         last_name = input("Enter the last name: ").strip().lower()
         
         dfa = DFA(first_name, last_name)
+        nfa = NFA(first_name, last_name)
 
         test_cases = ['noah', 'daniel', 'noahdanie', 'noahdaniel', 'qfoenwfinoahdanielwion', '', 'danielnoah']
 
         for i in test_cases:
             print('\nTesting test case:', i)
             test_case = i.strip().lower()
-            result = dfa.process_input(test_case)
+            if(dfa.process_input(test_case) or nfa.process_input(test_case)):
+                result = True
             print(f"Input: {test_case} -> {'Accepted' if result else 'Rejected'}")
 
         while True:
@@ -214,11 +216,11 @@ def main():
                 print("Empty line detected, exiting test cases loop.")
                 break  # Exit the test cases loop
             
-            result = dfa.process_input(test_case)
+            if(dfa.process_input(test_case) or nfa.process_input(test_case)):
+                result = True
             print(f"Input: {test_case} -> {'Accepted' if result else 'Rejected'}")
         
         # After exiting the test cases loop, prompt for new names or exit
         print("\nReady for new names or type 'exit' to quit.")
 
-if __name__ == "__main__":
-    main()
+main()
