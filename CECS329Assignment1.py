@@ -149,6 +149,45 @@ class NFA:
                     else:
                         self.states[state][char] = self.accepting_state
     
+    def process_input(self, input_string):
+        state = self.start_state
+        index = 0
+        first_name_found = False
+
+        # Step 1: Find the first occurrence of the first name
+        while index < len(input_string):
+            char = input_string[index]
+            if char in self.states[state]:
+                state = self.states[state][char]
+                if state == self.first_name_end_state:
+                    first_name_found = True
+                    # Move to the state to start searching for the last name
+                    state = self.last_name_start_state
+                    break
+            else:
+                state = self.start_state
+            index += 1
+
+        # Check if the first name was found
+        if not first_name_found:
+            return False  # The first name was not found
+
+        # Step 2: Try to match the last name after finding the first name
+        while index < len(input_string):
+            char = input_string[index]
+            if char in self.states[state]:
+                state = self.states[state][char]
+                if state == self.accepting_state:
+                    return True
+            else:
+                # Ensure we correctly handle the case where we are not matching
+                if state >= self.last_name_start_state:
+                    state = self.accepting_state
+                else:
+                    state = self.last_name_start_state
+            index += 1
+
+        return False
 
 def main():
     while True:
