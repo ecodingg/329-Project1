@@ -1,4 +1,4 @@
-#Names: Eden Doss-Fillmore, Noah Daniels, Angelo Cervana, Kathryn Woest
+#Names: Eden Doss-Fillmore, Kathryn Woest, Noah Daniels, Angelo Cervana
 #Tools used: Visual Studio Code, Discord, GitHub, Python, ChatGPT
 #GitHub Link: https://github.com/ecodingg/329-Project1
 
