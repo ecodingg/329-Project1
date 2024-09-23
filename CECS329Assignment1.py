@@ -1,5 +1,6 @@
-#Names: Eden Doss-Fillmore,
+#Names: Eden Doss-Fillmore, Noah Daniels, 
 #Tools used: Visual Studio Code, Discord, GitHub, Python, ChatGPT
+#GitHub Link: https://github.com/ecodingg/329-Project1
 
 class DFA:
     def __init__(self, first_name, last_name):
